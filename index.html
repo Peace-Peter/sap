@@ -163,7 +163,7 @@
                         <!-- Social Media Links -->
                         <div class="flex flex-wrap items-center gap-3 pt-2">
                             <a href="https://www.linkedin.com/in/peacepeter" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-slate-50 hover:bg-sapphire-900 hover:text-white text-slate-700 text-xs font-bold transition-all flex items-center gap-2 border border-slate-200">
-                                <i data-lucide="linkedin" class="w-4 h-4 text-sapphire-600"></i>
+                                <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 text-sapphire-600"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.114 20.452H3.558V9h3.556v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                                 <span>LinkedIn</span>
                             </a>
                             <a href="mailto:peaceabigailpeter@gmail.com" class="px-3.5 py-2 rounded-xl bg-slate-50 hover:bg-red-600 hover:text-white text-slate-700 text-xs font-bold transition-all flex items-center gap-2 border border-slate-200">
@@ -443,9 +443,108 @@
                     <p>Sharing a breakdown of the accounting entries behind each step of the Procure-to-Pay cycle along with the apps you'd use for each step in SAP Public Cloud.</p>
                     <p>It's a useful reference if you're working in FICO and you need to see where a procurement action on the MM side triggers an accounting entry on the FI side.</p>
 
-                    <img src="p2p-accounting-entries.png" alt="Accounting entries for the Procure-to-Pay cycle, with bank reconciliation: Purchase Order, Goods Receipt, Invoice, Payment, Bank Reconciliation" class="w-full rounded-xl border border-slate-200 my-4">
+                    <h3 class="text-base font-bold text-sapphire-dark mt-6 mb-3">Accounting Entries Across the Cycle</h3>
+                    <div class="overflow-x-auto -mx-2 px-2">
+                        <div class="flex items-stretch gap-2 min-w-[880px] py-2">
 
-                    <img src="sap-public-cloud-apps.png" alt="SAP Public Cloud apps used at each step of the Procure-to-Pay cycle: Manage Purchase Orders, Post Goods Receipt, Create Supplier Invoice, Manage Automatic Payments, Manage Bank Statements" class="w-full rounded-xl border border-slate-200 my-4">
+                            <div class="flex flex-col items-center text-center w-40 shrink-0">
+                                <div class="w-11 h-11 rounded-full bg-sapphire-50 border border-sapphire-100 flex items-center justify-center mb-2">
+                                    <i data-lucide="file-text" class="w-5 h-5 text-sapphire-600"></i>
+                                </div>
+                                <div class="text-xs font-bold text-sapphire-dark mb-2">Purchase Order</div>
+                                <div class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-[11px] font-mono text-slate-500 leading-relaxed">
+                                    No accounting entry
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-center shrink-0 pt-6">
+                                <i data-lucide="arrow-right" class="w-4 h-4 text-slate-300"></i>
+                            </div>
+
+                            <div class="flex flex-col items-center text-center w-40 shrink-0">
+                                <div class="w-11 h-11 rounded-full bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-2">
+                                    <i data-lucide="truck" class="w-5 h-5 text-amber-600"></i>
+                                </div>
+                                <div class="text-xs font-bold text-sapphire-dark mb-2">Goods Receipt</div>
+                                <div class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-[11px] font-mono text-slate-600 leading-relaxed text-left">
+                                    DR: Inventory<br>CR: GR/IR Clearing
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-center shrink-0 pt-6">
+                                <i data-lucide="arrow-right" class="w-4 h-4 text-slate-300"></i>
+                            </div>
+
+                            <div class="flex flex-col items-center text-center w-40 shrink-0">
+                                <div class="w-11 h-11 rounded-full bg-emerald-600/10 border border-emerald-600/20 flex items-center justify-center mb-2">
+                                    <i data-lucide="receipt" class="w-5 h-5 text-emerald-600"></i>
+                                </div>
+                                <div class="text-xs font-bold text-sapphire-dark mb-2">Invoice</div>
+                                <div class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-[11px] font-mono text-slate-600 leading-relaxed text-left">
+                                    DR: GR/IR Clearing<br>CR: Supplier
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-center shrink-0 pt-6">
+                                <i data-lucide="arrow-right" class="w-4 h-4 text-slate-300"></i>
+                            </div>
+
+                            <div class="flex flex-col items-center text-center w-40 shrink-0">
+                                <div class="w-11 h-11 rounded-full bg-sapphire-50 border border-sapphire-100 flex items-center justify-center mb-2">
+                                    <i data-lucide="banknote" class="w-5 h-5 text-sapphire-600"></i>
+                                </div>
+                                <div class="text-xs font-bold text-sapphire-dark mb-2">Payment</div>
+                                <div class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-[11px] font-mono text-slate-600 leading-relaxed text-left">
+                                    DR: Supplier<br>CR: Bank (Outgoing G/L)
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-center shrink-0 pt-6">
+                                <i data-lucide="arrow-right" class="w-4 h-4 text-slate-300"></i>
+                            </div>
+
+                            <div class="flex flex-col items-center text-center w-40 shrink-0">
+                                <div class="w-11 h-11 rounded-full bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-2">
+                                    <i data-lucide="landmark" class="w-5 h-5 text-amber-600"></i>
+                                </div>
+                                <div class="text-xs font-bold text-sapphire-dark mb-2">Bank Reconciliation</div>
+                                <div class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-[11px] font-mono text-slate-600 leading-relaxed text-left">
+                                    DR: Bank (Outgoing G/L)<br>CR: Bank (Main G/L)
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-slate-400 italic">Scroll sideways on smaller screens to see the full flow.</p>
+
+                    <h3 class="text-base font-bold text-sapphire-dark mt-8 mb-3">Where to Do It in SAP Public Cloud</h3>
+                    <div class="space-y-2.5">
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 bg-slate-50 border border-slate-200 rounded-xl p-3">
+                            <span class="shrink-0 w-full sm:w-44 px-3 py-1.5 rounded-lg bg-sapphire-50 text-sapphire-900 text-xs font-bold text-center sm:text-left">Purchase Order</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-slate-300 hidden sm:block shrink-0"></i>
+                            <span class="text-xs text-slate-600">Manage Purchase Orders <span class="text-slate-400">(or Create Purchase Order – Advanced)</span></span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 bg-slate-50 border border-slate-200 rounded-xl p-3">
+                            <span class="shrink-0 w-full sm:w-44 px-3 py-1.5 rounded-lg bg-sapphire-50 text-sapphire-900 text-xs font-bold text-center sm:text-left">Goods Receipt</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-slate-300 hidden sm:block shrink-0"></i>
+                            <span class="text-xs text-slate-600">Post Goods Receipt</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 bg-slate-50 border border-slate-200 rounded-xl p-3">
+                            <span class="shrink-0 w-full sm:w-44 px-3 py-1.5 rounded-lg bg-sapphire-50 text-sapphire-900 text-xs font-bold text-center sm:text-left">Invoicing</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-slate-300 hidden sm:block shrink-0"></i>
+                            <span class="text-xs text-slate-600">Create Supplier Invoice <span class="text-slate-400">— not Create Incoming Invoice</span></span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 bg-slate-50 border border-slate-200 rounded-xl p-3">
+                            <span class="shrink-0 w-full sm:w-44 px-3 py-1.5 rounded-lg bg-sapphire-50 text-sapphire-900 text-xs font-bold text-center sm:text-left">Payment Posting</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-slate-300 hidden sm:block shrink-0"></i>
+                            <span class="text-xs text-slate-600">Manage Automatic Payments <span class="text-slate-400">(batch)</span> or Post Outgoing Payments <span class="text-slate-400">(single)</span></span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 bg-slate-50 border border-slate-200 rounded-xl p-3">
+                            <span class="shrink-0 w-full sm:w-44 px-3 py-1.5 rounded-lg bg-sapphire-50 text-sapphire-900 text-xs font-bold text-center sm:text-left">Bank Statement Upload</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-slate-300 hidden sm:block shrink-0"></i>
+                            <span class="text-xs text-slate-600">Manage Bank Statements</span>
+                        </div>
+                    </div>
                 `
             },
             {
@@ -587,6 +686,7 @@
             document.getElementById('reader-date').textContent = post.date;
             document.getElementById('reader-title').textContent = post.title;
             document.getElementById('reader-body').innerHTML = post.content;
+            lucide.createIcons();
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
