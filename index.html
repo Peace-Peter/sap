@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peace Peter | SAP FICO Consultant & Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    },
+                    colors: {
+                        sapphire: {
+                            50: '#f0f4ff',
+                            100: '#e0e9fe',
+                            600: '#2563eb',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                            dark: '#0f172a'
+                        },
+                        amber: {
+                            500: '#f59e0b',
+                            600: '#d97706'
+                        },
+                        surface: {
+                            bg: '#f8fafc',
+                            card: '#ffffff',
+                            border: '#e2e8f0',
+                            subtle: '#f1f5f9'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f8fafc;
+            color: #0f172a;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .clean-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+            border-radius: 1.25rem;
+        }
+        .clean-card:hover {
+            box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.08);
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .nav-btn.active {
+            color: #1e3a8a;
+            font-weight: 700;
+            border-bottom: 2px solid #2563eb;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-sapphire-600 selection:text-white flex flex-col min-h-screen">
+
+    <!-- Minimal Header Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-header">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo / Name Branding -->
+                <a href="#" onclick="navigateTo('home'); return false;" class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-sapphire-900 flex items-center justify-center font-extrabold text-white text-base shadow-sm">
+                        PP
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-base font-extrabold text-sapphire-dark tracking-tight leading-tight">PEACE PETER</span>
+                        <span class="text-[11px] font-semibold text-sapphire-600 tracking-wide uppercase">SAP FICO Blog & Knowledge Base</span>
+                    </div>
+                </a>
+
+                <!-- Navigation Links: Only Home & Blog -->
+                <nav class="flex items-center gap-8 text-sm font-medium">
+                    <button onclick="navigateTo('home')" id="nav-home" class="nav-btn py-2 text-slate-500 hover:text-sapphire-900 transition-colors active">Home</button>
+                    <button onclick="navigateTo('blog')" id="nav-blog" class="nav-btn py-2 text-slate-500 hover:text-sapphire-900 transition-colors">Blog</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow pt-28">
+
+        <!-- VIEW 1: HOME PAGE (About Peace Peter & Social Links) -->
+        <section id="view-home" class="page-view max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Main Bio Card -->
+            <div class="clean-card p-8 sm:p-12 mb-10">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
+                    
+                    <!-- Profile Picture Column -->
+                    <div class="md:col-span-5 flex flex-col items-center text-center">
+                        <div class="relative group w-52 h-52 sm:w-60 sm:h-60 rounded-3xl overflow-hidden bg-slate-100 border-2 border-sapphire-100 shadow-md flex items-center justify-center mb-4">
+                            <!-- Image Element referencing local GitHub repository pictures -->
+                            <img id="profile-img" src="peacepeter.jpg" onerror="this.src='https://placehold.co/600x600/1e3a8a/ffffff?text=Peace+Peter'" alt="Peace Peter" class="w-full h-full object-cover object-center transition-all duration-500">
+                            
+                            <!-- Placeholder Overlay Badge -->
+                            <div class="absolute inset-0 bg-sapphire-dark/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white text-xs font-semibold p-4">
+                                <i data-lucide="camera" class="w-6 h-6 mb-2"></i>
+                                <span id="photo-label">Peace Peter (Photo 1)</span>
+                            </div>
+                        </div>
+
+                        <!-- Quick Toggle Photo Demo -->
+                        <button onclick="togglePhoto()" class="text-[11px] font-semibold text-sapphire-600 hover:text-sapphire-900 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-sapphire-50 border border-sapphire-100 transition-colors">
+                            <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-sapphire-600"></i>
+                            <span id="toggle-btn-text">Switch to Alternate Photo</span>
+                        </button>
+                    </div>
+
+                    <!-- Bio & Details Column -->
+                    <div class="md:col-span-7 space-y-5">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sapphire-50 border border-sapphire-100 text-xs font-bold text-sapphire-900">
+                            <i data-lucide="award" class="w-3.5 h-3.5 text-amber-600"></i>
+                            <span>SAP FICO Consultant & Educator</span>
+                        </div>
+
+                        <h1 class="text-3xl sm:text-4xl font-extrabold text-sapphire-dark tracking-tight">
+                            Hi, I'm Peace Peter 👋
+                        </h1>
+
+                        <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+                            Welcome to my personal SAP blog. I am a dedicated <strong class="text-slate-900">SAP Financial Accounting & Controlling (FICO) Consultant</strong>. I share practical, step-by-step guides, configuration walkthroughs, and accounting posting logic to help SAP professionals, consultants, and end-users master enterprise financial processes.
+                        </p>
+
+                        <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                            My core expertise spans across <strong class="text-slate-800">General Ledger (FI-GL)</strong>, <strong class="text-slate-800">Accounts Payable (FI-AP)</strong>, <strong class="text-slate-800">Accounts Receivable (FI-AR)</strong>, <strong class="text-slate-800">Asset Accounting (FI-AA)</strong>, and <strong class="text-slate-800">Bank Accounting (FI-BL)</strong>, as well as end-to-end integration cycles like Procure-to-Pay (P2P) and Order-to-Cash (O2C).
+                        </p>
+
+                        <!-- Social Media Links Section -->
+                        <div class="pt-4 border-t border-slate-200">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-3">Connect & View Profiles</span>
+                            
+                            <div class="flex flex-wrap items-center gap-3">
+                                <a href="https://linkedin.com" target="_blank" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-sapphire-900 hover:text-white text-slate-700 text-xs font-bold transition-all flex items-center gap-2 border border-slate-200">
+                                    <i data-lucide="linkedin" class="w-4 h-4 text-sapphire-600"></i>
+                                    <span>LinkedIn</span>
+                                </a>
+
+                                <a href="https://twitter.com" target="_blank" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-sapphire-900 hover:text-white text-slate-700 text-xs font-bold transition-all flex items-center gap-2 border border-slate-200">
+                                    <i data-lucide="twitter" class="w-4 h-4 text-sapphire-600"></i>
+                                    <span>Twitter / X</span>
+                                </a>
+
+                                <a href="https://youtube.com" target="_blank" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-red-600 hover:text-white text-slate-700 text-xs font-bold transition-all flex items-center gap-2 border border-slate-200">
+                                    <i data-lucide="youtube" class="w-4 h-4 text-red-500"></i>
+                                    <span>YouTube</span>
+                                </a>
+
+                                <a href="mailto:peace@example.com" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-amber-600 hover:text-white text-slate-700 text-xs font-bold transition-all flex items-center gap-2 border border-slate-200">
+                                    <i data-lucide="mail" class="w-4 h-4 text-amber-600"></i>
+                                    <span>Email Me</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Blog Posts Section on Home Page -->
+            <div class="mb-12">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="text-xs font-bold text-amber-600 uppercase tracking-widest">Latest Articles</h2>
+                        <h3 class="text-2xl font-extrabold text-sapphire-dark">Recent SAP Posts</h3>
+                    </div>
+
+                    <button onclick="navigateTo('blog')" class="px-4 py-2 rounded-xl bg-sapphire-50 border border-sapphire-100 text-sapphire-900 font-bold text-xs hover:bg-sapphire-900 hover:text-white transition-all flex items-center gap-1.5">
+                        <span>View All Posts</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="home-posts-container">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
+
+        </section>
+
+        <!-- VIEW 2: BLOG PAGE -->
+        <section id="view-blog" class="page-view hidden max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Article Reader View Container -->
+            <div id="article-reader-container" class="hidden mb-12">
+                <button onclick="closeArticleReader()" class="mb-6 inline-flex items-center gap-2 text-xs font-bold text-sapphire-900 bg-white px-4 py-2.5 rounded-xl border border-slate-200 shadow-sm hover:border-sapphire-600 transition-colors">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    <span>Back to All Posts</span>
+                </button>
+
+                <article class="clean-card p-8 sm:p-12">
+                    <div class="flex flex-wrap items-center gap-3 mb-4">
+                        <span id="reader-module" class="px-3 py-1 rounded-full bg-sapphire-50 text-sapphire-900 text-xs font-bold uppercase tracking-wider"></span>
+                        <span id="reader-readtime" class="text-xs text-slate-500 flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5"></i> <span></span></span>
+                        <span id="reader-date" class="text-xs text-slate-500"></span>
+                    </div>
+
+                    <h1 id="reader-title" class="text-3xl sm:text-4xl font-extrabold text-sapphire-dark mb-6 leading-tight"></h1>
+
+                    <div class="flex items-center gap-3 py-4 border-y border-slate-200 mb-8">
+                        <div class="w-10 h-10 rounded-full bg-sapphire-900 font-bold text-white flex items-center justify-center text-xs">PP</div>
+                        <div>
+                            <div class="text-xs font-bold text-sapphire-dark">Written by Peace Peter</div>
+                            <div class="text-[11px] text-slate-500">SAP FICO Consultant</div>
+                        </div>
+                    </div>
+
+                    <!-- Article Body -->
+                    <div id="reader-body" class="prose max-w-none text-slate-700 text-sm sm:text-base leading-relaxed space-y-6"></div>
+                </article>
+            </div>
+
+            <!-- Main Blog Feed View -->
+            <div id="blog-feed-header">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+                    <div>
+                        <h1 class="text-3xl font-extrabold text-sapphire-dark mb-1">SAP Articles & Walkthroughs</h1>
+                        <p class="text-xs sm:text-sm text-slate-500">Periodically published articles on SAP FICO configurations, T-Codes, and accounting entries.</p>
+                    </div>
+
+                    <!-- Create Draft Post Modal Toggle -->
+                    <button onclick="toggleDraftModal()" class="px-4 py-2.5 rounded-xl bg-sapphire-900 hover:bg-sapphire-800 text-white font-bold text-xs flex items-center gap-2 shadow-sm">
+                        <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                        <span>New Post Preview</span>
+                    </button>
+                </div>
+
+                <!-- Search & Filters -->
+                <div class="clean-card p-4 mb-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <!-- Search Input -->
+                    <div class="relative w-full md:w-80">
+                        <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5"></i>
+                        <input type="text" id="blog-search-input" onkeyup="filterBlogPosts()" placeholder="Search T-Codes, General Ledger, AP, Asset..." class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-sapphire-600">
+                    </div>
+
+                    <!-- Category Buttons -->
+                    <div class="flex flex-wrap items-center gap-2 w-full md:w-auto" id="blog-category-tabs">
+                        <button onclick="setBlogCategory('all')" data-cat="all" class="cat-btn active px-3.5 py-2 rounded-xl text-xs font-semibold bg-sapphire-900 text-white transition-all">All</button>
+                        <button onclick="setBlogCategory('GL')" data-cat="GL" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">General Ledger</button>
+                        <button onclick="setBlogCategory('AP')" data-cat="AP" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">Accounts Payable</button>
+                        <button onclick="setBlogCategory('P2P')" data-cat="P2P" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">P2P Integration</button>
+                        <button onclick="setBlogCategory('AA')" data-cat="AA" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">Asset Accounting</button>
+                        <button onclick="setBlogCategory('Bank')" data-cat="Bank" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">Bank Recon</button>
+                    </div>
+                </div>
+
+                <!-- Blog Feed Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" id="blog-grid">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
+
+            <!-- Draft Post Simulator Modal (Allows Peace Peter to test adding new posts) -->
+            <div id="draft-modal" class="hidden fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4">
+                <div class="clean-card w-full max-w-lg p-6 bg-white shadow-2xl relative">
+                    <button onclick="toggleDraftModal()" class="absolute right-4 top-4 text-slate-400 hover:text-slate-800">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+
+                    <h3 class="text-lg font-bold text-sapphire-dark mb-1">Create New SAP Article Preview</h3>
+                    <p class="text-xs text-slate-500 mb-4">Simulate how your periodic SAP updates will look when published on your blog.</p>
+
+                    <form onsubmit="handleCreateDraft(event)" class="space-y-4 text-xs">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Article Title</label>
+                            <input type="text" id="draft-title" required placeholder="e.g. FB60 Vendor Invoice Posting Walkthrough" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-sapphire-600">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block font-bold text-slate-700 mb-1">Category</label>
+                                <select id="draft-category" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-sapphire-600">
+                                    <option value="GL">General Ledger (GL)</option>
+                                    <option value="AP">Accounts Payable (AP)</option>
+                                    <option value="P2P">P2P Integration</option>
+                                    <option value="AA">Asset Accounting (AA)</option>
+                                    <option value="Bank">Bank Accounting</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block font-bold text-slate-700 mb-1">Estimated Read Time</label>
+                                <input type="text" id="draft-readtime" placeholder="e.g. 5 min read" value="5 min read" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-sapphire-600">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Summary / Excerpt</label>
+                            <textarea id="draft-summary" rows="2" required placeholder="Brief description of the SAP posting or transaction..." class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-sapphire-600"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Full Article Content (Supports HTML tags)</label>
+                            <textarea id="draft-content" rows="4" required placeholder="Write your full SAP walkthrough content here..." class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-sapphire-600"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3 bg-sapphire-900 hover:bg-sapphire-800 text-white font-bold rounded-xl shadow-md transition-all">
+                            Publish Post to Blog Feed
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-8 mt-16 text-xs text-slate-500">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded-lg bg-sapphire-900 text-white flex items-center justify-center font-bold text-[10px]">PP</div>
+                <span class="font-bold text-sapphire-dark">Peace Peter | SAP FICO Blog</span>
+            </div>
+            <p>© 2026 Peace Peter. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Router Navigation function
+        function navigateTo(viewId) {
+            document.querySelectorAll('.page-view').forEach(v => v.classList.add('hidden'));
+            const target = document.getElementById(`view-${viewId}`);
+            if(target) target.classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById(`nav-${viewId}`);
+            if(activeBtn) activeBtn.classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Photo Toggle function switching between peacepeter.jpg & peacepeter2.jpg
+        let isPrimaryPhoto = true;
+        function togglePhoto() {
+            const img = document.getElementById('profile-img');
+            const label = document.getElementById('photo-label');
+            const btnText = document.getElementById('toggle-btn-text');
+
+            if(isPrimaryPhoto) {
+                img.src = "peacepeter2.jpg";
+                if(label) label.textContent = "Peace Peter (Photo 2)";
+                if(btnText) btnText.textContent = "Switch to Main Photo";
+            } else {
+                img.src = "peacepeter.jpg";
+                if(label) label.textContent = "Peace Peter (Photo 1)";
+                if(btnText) btnText.textContent = "Switch to Alternate Photo";
+            }
+            isPrimaryPhoto = !isPrimaryPhoto;
+        }
+
+        // SAP Blog Posts Dataset
+        let blogPosts = [
+            {
+                id: 1,
+                title: "Procure-to-Pay (P2P) Accounting & Posting Entries Explained",
+                category: "P2P",
+                moduleTag: "FI-AP / MM Integration",
+                readTime: "7 min read",
+                date: "Oct 18, 2026",
+                summary: "A complete walkthrough of the financial ledger movements created at Purchase Order, Goods Receipt (MIGO), Invoice Verification (MIRO), and Payment Run (F110).",
+                content: `
+                    <p>The Procure-to-Pay (P2P) process represents the financial integration between SAP Materials Management (MM) and Accounts Payable (FI-AP).</p>
+                    
+                    <h3 class="text-base font-bold text-sapphire-dark mt-4 mb-2">1. Purchase Order (ME21N)</h3>
+                    <p class="text-xs text-slate-600">No financial posting occurs at Purchase Order creation.</p>
+
+                    <h3 class="text-base font-bold text-sapphire-dark mt-4 mb-2">2. Goods Receipt (MIGO)</h3>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 font-mono text-xs my-2">
+                        Debit: Inventory / Expense Account (+)<br>
+                        Credit: GR/IR Clearing Account (-)
+                    </div>
+
+                    <h3 class="text-base font-bold text-sapphire-dark mt-4 mb-2">3. Invoice Verification (MIRO)</h3>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 font-mono text-xs my-2">
+                        Debit: GR/IR Clearing Account (+)<br>
+                        Credit: Vendor Accounts Payable (-)
+                    </div>
+
+                    <h3 class="text-base font-bold text-sapphire-dark mt-4 mb-2">4. Payment Run (F110)</h3>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 font-mono text-xs my-2">
+                        Debit: Vendor Accounts Payable (+)<br>
+                        Credit: Bank Outgoing Clearing Account (-)
+                    </div>
+                `
+            },
+            {
+                id: 2,
+                title: "Asset Accounting: Execution of Depreciation Run (AFAB)",
+                category: "AA",
+                moduleTag: "FI-AA Submodule",
+                readTime: "9 min read",
+                date: "Sep 30, 2026",
+                summary: "How asset master records, depreciation keys, and transaction AFAB function during month-end closing in SAP.",
+                content: `
+                    <p>Asset Accounting (FI-AA) manages fixed assets from capitalization to retirement. Executing transaction AFAB posts periodic depreciation into General Ledger accounts.</p>
+
+                    <h3 class="text-base font-bold text-sapphire-dark mt-4 mb-2">Month-End Depreciation Posting (AFAB)</h3>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 font-mono text-xs my-2">
+                        Debit: Depreciation Expense Account (+)<br>
+                        Credit: Accumulated Depreciation Account (-)
+                    </div>
+                `
+            },
+            {
+                id: 3,
+                title: "Essential SAP FICO Transaction Codes Cheat Sheet",
+                category: "GL",
+                moduleTag: "FI-GL / Core",
+                readTime: "5 min read",
+                date: "Sep 12, 2026",
+                summary: "A practical T-Code reference guide for General Ledger postings, Vendor/Customer line item displays, and period closing.",
+                content: `
+                    <p>Here is my reference list of primary T-Codes every SAP practitioner uses daily:</p>
+                    <ul class="list-disc pl-5 space-y-1 text-xs my-3 text-slate-600">
+                        <li><strong>FB50:</strong> Enter G/L Account Document</li>
+                        <li><strong>FBL3N:</strong> G/L Account Line Items Display</li>
+                        <li><strong>F110:</strong> Automatic Payment Program</li>
+                        <li><strong>AW01N:</strong> Asset Explorer</li>
+                    </ul>
+                `
+            }
+        ];
+
+        // Render Recent Posts on Home Page
+        function renderHomePosts() {
+            const container = document.getElementById('home-posts-container');
+            container.innerHTML = '';
+            blogPosts.slice(0, 2).forEach(post => {
+                container.innerHTML += `
+                    <div class="clean-card p-6 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-0.5 bg-sapphire-50 text-sapphire-900 rounded-md text-[10px] font-bold uppercase tracking-wider">${post.category}</span>
+                                <span class="text-[11px] text-slate-400">${post.date}</span>
+                            </div>
+                            <h4 class="text-base font-bold text-sapphire-dark group-hover:text-sapphire-600 transition-colors mb-2">${post.title}</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed mb-4">${post.summary}</p>
+                        </div>
+                        <button onclick="openArticleReader(${post.id})" class="text-xs font-bold text-sapphire-900 hover:text-sapphire-600 flex items-center gap-1">
+                            <span>Read Full Article</span>
+                            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                `;
+            });
+            lucide.createIcons();
+        }
+
+        // Render Blog Page Feed
+        let currentCategory = 'all';
+
+        function renderBlogFeed() {
+            const grid = document.getElementById('blog-grid');
+            grid.innerHTML = '';
+
+            const searchTerm = document.getElementById('blog-search-input').value.toLowerCase();
+
+            const filtered = blogPosts.filter(post => {
+                const matchesCat = (currentCategory === 'all' || post.category === currentCategory);
+                const matchesSearch = post.title.toLowerCase().includes(searchTerm) || 
+                                      post.summary.toLowerCase().includes(searchTerm) || 
+                                      post.category.toLowerCase().includes(searchTerm);
+                return matchesCat && matchesSearch;
+            });
+
+            if(filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full py-12 text-center text-slate-400 text-xs">No posts found.</div>`;
+                return;
+            }
+
+            filtered.forEach(post => {
+                grid.innerHTML += `
+                    <div class="clean-card p-6 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-0.5 bg-sapphire-50 text-sapphire-900 rounded-md text-[10px] font-bold uppercase tracking-wider">${post.category}</span>
+                                <span class="text-[11px] text-slate-400">${post.readTime}</span>
+                            </div>
+                            <h3 class="text-base font-bold text-sapphire-dark group-hover:text-sapphire-600 transition-colors mb-2">${post.title}</h3>
+                            <p class="text-xs text-slate-500 leading-relaxed mb-6">${post.summary}</p>
+                        </div>
+                        <button onclick="openArticleReader(${post.id})" class="w-full py-2 bg-slate-50 hover:bg-sapphire-900 hover:text-white border border-slate-200 text-sapphire-dark text-xs font-bold transition-all rounded-xl flex items-center justify-center gap-2">
+                            <span>Read Article</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                `;
+            });
+            lucide.createIcons();
+        }
+
+        function setBlogCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('#blog-category-tabs .cat-btn').forEach(btn => {
+                if(btn.getAttribute('data-cat') === cat) {
+                    btn.classList.add('bg-sapphire-900', 'text-white');
+                    btn.classList.remove('bg-slate-100', 'text-slate-600');
+                } else {
+                    btn.classList.remove('bg-sapphire-900', 'text-white');
+                    btn.classList.add('bg-slate-100', 'text-slate-600');
+                }
+            });
+            renderBlogFeed();
+        }
+
+        function filterBlogPosts() {
+            renderBlogFeed();
+        }
+
+        // Open Reader Modal
+        function openArticleReader(articleId) {
+            const post = blogPosts.find(p => p.id === articleId);
+            if(!post) return;
+
+            navigateTo('blog');
+
+            document.getElementById('blog-feed-header').classList.add('hidden');
+            document.getElementById('article-reader-container').classList.remove('hidden');
+
+            document.getElementById('reader-module').textContent = post.moduleTag;
+            document.getElementById('reader-readtime').querySelector('span').textContent = post.readTime;
+            document.getElementById('reader-date').textContent = post.date;
+            document.getElementById('reader-title').textContent = post.title;
+            document.getElementById('reader-body').innerHTML = post.content;
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function closeArticleReader() {
+            document.getElementById('article-reader-container').classList.add('hidden');
+            document.getElementById('blog-feed-header').classList.remove('hidden');
+        }
+
+        // Draft Modal Toggle
+        function toggleDraftModal() {
+            const modal = document.getElementById('draft-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function handleCreateDraft(e) {
+            e.preventDefault();
+            const title = document.getElementById('draft-title').value;
+            const category = document.getElementById('draft-category').value;
+            const readTime = document.getElementById('draft-readtime').value;
+            const summary = document.getElementById('draft-summary').value;
+            const content = document.getElementById('draft-content').value;
+
+            const newPost = {
+                id: blogPosts.length + 1,
+                title,
+                category,
+                moduleTag: `SAP ${category}`,
+                readTime,
+                date: "Just Now",
+                summary,
+                content: `<p>${content}</p>`
+            };
+
+            blogPosts.unshift(newPost);
+            renderBlogFeed();
+            renderHomePosts();
+            toggleDraftModal();
+            e.target.reset();
+        }
+
+        // On Page Load Initialization
+        window.onload = function() {
+            renderHomePosts();
+            renderBlogFeed();
+        };
+    </script>
+</body>
+</html>
