@@ -28,6 +28,9 @@
                             500: '#f59e0b',
                             600: '#d97706'
                         },
+                        emerald: {
+                            600: '#059669'
+                        },
                         surface: {
                             bg: '#f8fafc',
                             card: '#ffffff',
@@ -49,10 +52,10 @@
             background: #ffffff;
             border: 1px solid #e2e8f0;
             box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.03);
-            border-radius: 1.25rem;
+            border-radius: 1.5rem;
         }
         .clean-card:hover {
-            box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.08);
+            box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.06);
         }
         .glass-header {
             background: rgba(255, 255, 255, 0.95);
@@ -81,22 +84,21 @@
 </head>
 <body class="antialiased selection:bg-sapphire-600 selection:text-white flex flex-col min-h-screen">
 
-    <!-- Minimal Header Navigation -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-header">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
-                <!-- Logo / Name Branding -->
+                <!-- Brand Branding -->
                 <a href="#" onclick="navigateTo('home'); return false;" class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-xl bg-sapphire-900 flex items-center justify-center font-extrabold text-white text-base shadow-sm">
                         PP
                     </div>
                     <div class="flex flex-col">
                         <span class="text-base font-extrabold text-sapphire-dark tracking-tight leading-tight">PEACE PETER</span>
-                        <span class="text-[11px] font-semibold text-sapphire-600 tracking-wide uppercase">SAP FICO Blog & Knowledge Base</span>
+                        <span class="text-[11px] font-semibold text-sapphire-600 tracking-wide uppercase">SAP FICO Consultant & Blog</span>
                     </div>
                 </a>
 
-                <!-- Navigation Links: Only Home & Blog -->
+                <!-- Navigation Links -->
                 <nav class="flex items-center gap-8 text-sm font-medium">
                     <button onclick="navigateTo('home')" id="nav-home" class="nav-btn py-2 text-slate-500 hover:text-sapphire-900 transition-colors active">Home</button>
                     <button onclick="navigateTo('blog')" id="nav-blog" class="nav-btn py-2 text-slate-500 hover:text-sapphire-900 transition-colors">Blog</button>
@@ -105,86 +107,103 @@
         </div>
     </header>
 
-    <!-- Main Container -->
+    <!-- Main View Container -->
     <main class="flex-grow pt-28">
 
-        <!-- VIEW 1: HOME PAGE (About Peace Peter & Social Links) -->
-        <section id="view-home" class="page-view max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="view-home" class="page-view max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            <!-- Main Bio Card -->
-            <div class="clean-card p-8 sm:p-12 mb-10">
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <!-- Redesigned Hero Section (Light Aesthetic, Matched Structure) -->
+            <div class="clean-card p-6 sm:p-10 lg:p-12 mb-12 bg-white">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
                     
-                    <!-- Profile Picture Column -->
-                    <div class="md:col-span-5 flex flex-col items-center text-center">
-                        <div class="relative group w-52 h-52 sm:w-60 sm:h-60 rounded-3xl overflow-hidden bg-slate-100 border-2 border-sapphire-100 shadow-md flex items-center justify-center mb-4">
-                            <!-- Image Element referencing local GitHub repository pictures -->
-                            <img id="profile-img" src="peacepeter.jpg" onerror="this.src='https://placehold.co/600x600/1e3a8a/ffffff?text=Peace+Peter'" alt="Peace Peter" class="w-full h-full object-cover object-center transition-all duration-500">
+                    <!-- Left Column: Portrait Photo & Image Switcher -->
+                    <div class="md:col-span-5 lg:col-span-4 flex flex-col items-center">
+                        <div class="relative group w-full aspect-[4/5] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 shadow-sm mb-3">
+                            <img id="profile-img" src="peacepeter.jpg" onerror="this.src='https://placehold.co/600x750/1e3a8a/ffffff?text=Peace+Peter'" alt="Peace Peter" class="w-full h-full object-cover object-center transition-all duration-500">
                             
-                            <!-- Placeholder Overlay Badge -->
-                            <div class="absolute inset-0 bg-sapphire-dark/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white text-xs font-semibold p-4">
-                                <i data-lucide="camera" class="w-6 h-6 mb-2"></i>
+                            <!-- Overlay Info -->
+                            <div class="absolute inset-0 bg-sapphire-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-end p-4 text-white text-xs font-semibold">
                                 <span id="photo-label">Peace Peter (Photo 1)</span>
                             </div>
                         </div>
 
-                        <!-- Quick Toggle Photo Demo -->
-                        <button onclick="togglePhoto()" class="text-[11px] font-semibold text-sapphire-600 hover:text-sapphire-900 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-sapphire-50 border border-sapphire-100 transition-colors">
+                        <!-- Photo Switcher Button -->
+                        <button onclick="togglePhoto()" class="w-full py-2 px-3 rounded-xl bg-slate-50 hover:bg-sapphire-50 border border-slate-200 hover:border-sapphire-200 text-slate-700 hover:text-sapphire-900 text-xs font-bold transition-all flex items-center justify-center gap-2">
                             <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-sapphire-600"></i>
                             <span id="toggle-btn-text">Switch to Alternate Photo</span>
                         </button>
                     </div>
 
-                    <!-- Bio & Details Column -->
-                    <div class="md:col-span-7 space-y-5">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sapphire-50 border border-sapphire-100 text-xs font-bold text-sapphire-900">
-                            <i data-lucide="award" class="w-3.5 h-3.5 text-amber-600"></i>
-                            <span>SAP FICO Consultant & Educator</span>
+                    <!-- Right Column: Header, Title, Narrative Bio & Stats Row -->
+                    <div class="md:col-span-7 lg:col-span-8 flex flex-col justify-between space-y-6">
+                        
+                        <!-- Top Header Tag -->
+                        <div>
+                            <span class="text-xs font-extrabold text-emerald-600 uppercase tracking-widest block mb-2">ABOUT</span>
+                            
+                            <!-- Bold Main Headline -->
+                            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-sapphire-dark tracking-tight leading-[1.15]">
+                                Financial Processes first.<br>
+                                System Excellence second.
+                            </h1>
                         </div>
 
-                        <h1 class="text-3xl sm:text-4xl font-extrabold text-sapphire-dark tracking-tight">
-                            Hi, I'm Peace Peter 👋
-                        </h1>
+                        <!-- Narrative Bio Paragraphs -->
+                        <div class="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
+                            <p>
+                                Hi, I'm <strong class="text-slate-900 font-bold">Peace Peter</strong>. I am deeply motivated by precision, structural accuracy, and enterprise efficiency. My work sits at the intersection of business accounting logic and SAP technology—where complex financial requirements are transformed into robust, standardized system configurations.
+                            </p>
+                            <p class="text-xs sm:text-sm text-slate-500">
+                                Through end-to-end implementation support, financial posting guides, and educational content, I help accountants, end-users, and SAP consultants master core modules like General Ledger (FI-GL), Accounts Payable (FI-AP), Accounts Receivable (FI-AR), and Asset Accounting (FI-AA).
+                            </p>
+                        </div>
 
-                        <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
-                            Welcome to my personal SAP blog. I am a dedicated <strong class="text-slate-900">SAP Financial Accounting & Controlling (FICO) Consultant</strong>. I share practical, step-by-step guides, configuration walkthroughs, and accounting posting logic to help SAP professionals, consultants, and end-users master enterprise financial processes.
-                        </p>
+                        <!-- Social Media Links -->
+                        <div class="flex flex-wrap items-center gap-3 pt-2">
+                            <a href="https://linkedin.com" target="_blank" class="px-3.5 py-2 rounded-xl bg-slate-50 hover:bg-sapphire-900 hover:text-white text-slate-700 text-xs font-bold transition-all flex items-center gap-2 border border-slate-200">
+                                <i data-lucide="linkedin" class="w-4 h-4 text-sapphire-600"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://twitter.com" target="_blank" class="px-3.5 py-2 rounded-xl bg-slate-50 hover:bg-sapphire-900 hover:text-white text-slate-700 text-xs font-bold transition-all flex items-center gap-2 border border-slate-200">
+                                <i data-lucide="twitter" class="w-4 h-4 text-sapphire-600"></i>
+                                <span>Twitter / X</span>
+                            </a>
+                            <a href="https://youtube.com" target="_blank" class="px-3.5 py-2 rounded-xl bg-slate-50 hover:bg-red-600 hover:text-white text-slate-700 text-xs font-bold transition-all flex items-center gap-2 border border-slate-200">
+                                <i data-lucide="youtube" class="w-4 h-4 text-red-500"></i>
+                                <span>YouTube</span>
+                            </a>
+                            <a href="mailto:peace@example.com" class="px-3.5 py-2 rounded-xl bg-slate-50 hover:bg-amber-600 hover:text-white text-slate-700 text-xs font-bold transition-all flex items-center gap-2 border border-slate-200">
+                                <i data-lucide="mail" class="w-4 h-4 text-amber-600"></i>
+                                <span>Email Me</span>
+                            </a>
+                        </div>
 
-                        <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                            My core expertise spans across <strong class="text-slate-800">General Ledger (FI-GL)</strong>, <strong class="text-slate-800">Accounts Payable (FI-AP)</strong>, <strong class="text-slate-800">Accounts Receivable (FI-AR)</strong>, <strong class="text-slate-800">Asset Accounting (FI-AA)</strong>, and <strong class="text-slate-800">Bank Accounting (FI-BL)</strong>, as well as end-to-end integration cycles like Procure-to-Pay (P2P) and Order-to-Cash (O2C).
-                        </p>
-
-                        <!-- Social Media Links Section -->
-                        <div class="pt-4 border-t border-slate-200">
-                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-3">Connect & View Profiles</span>
-                            
-                            <div class="flex flex-wrap items-center gap-3">
-                                <a href="https://linkedin.com" target="_blank" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-sapphire-900 hover:text-white text-slate-700 text-xs font-bold transition-all flex items-center gap-2 border border-slate-200">
-                                    <i data-lucide="linkedin" class="w-4 h-4 text-sapphire-600"></i>
-                                    <span>LinkedIn</span>
-                                </a>
-
-                                <a href="https://twitter.com" target="_blank" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-sapphire-900 hover:text-white text-slate-700 text-xs font-bold transition-all flex items-center gap-2 border border-slate-200">
-                                    <i data-lucide="twitter" class="w-4 h-4 text-sapphire-600"></i>
-                                    <span>Twitter / X</span>
-                                </a>
-
-                                <a href="https://youtube.com" target="_blank" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-red-600 hover:text-white text-slate-700 text-xs font-bold transition-all flex items-center gap-2 border border-slate-200">
-                                    <i data-lucide="youtube" class="w-4 h-4 text-red-500"></i>
-                                    <span>YouTube</span>
-                                </a>
-
-                                <a href="mailto:peace@example.com" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-amber-600 hover:text-white text-slate-700 text-xs font-bold transition-all flex items-center gap-2 border border-slate-200">
-                                    <i data-lucide="mail" class="w-4 h-4 text-amber-600"></i>
-                                    <span>Email Me</span>
-                                </a>
+                        <!-- Key Statistics Grid Row -->
+                        <div class="pt-6 border-t border-slate-100">
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                                <div>
+                                    <div class="text-3xl lg:text-4xl font-extrabold text-sapphire-dark tracking-tight">6</div>
+                                    <div class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mt-1">PROJECTS</div>
+                                </div>
+                                <div>
+                                    <div class="text-3xl lg:text-4xl font-extrabold text-sapphire-dark tracking-tight">4</div>
+                                    <div class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mt-1">INDUSTRIES</div>
+                                </div>
+                                <div>
+                                    <div class="text-3xl lg:text-4xl font-extrabold text-sapphire-dark tracking-tight">5x</div>
+                                    <div class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mt-1">CERTIFIED</div>
+                                </div>
+                                <div>
+                                    <div class="text-3xl lg:text-4xl font-extrabold text-sapphire-dark tracking-tight">3</div>
+                                    <div class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mt-1">YEARS IN SAP</div>
+                                </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
 
-            <!-- Recent Blog Posts Section on Home Page -->
             <div class="mb-12">
                 <div class="flex items-center justify-between mb-6">
                     <div>
@@ -205,7 +224,6 @@
 
         </section>
 
-        <!-- VIEW 2: BLOG PAGE -->
         <section id="view-blog" class="page-view hidden max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <!-- Article Reader View Container -->
@@ -277,7 +295,7 @@
                 </div>
             </div>
 
-            <!-- Draft Post Simulator Modal (Allows Peace Peter to test adding new posts) -->
+            <!-- Draft Post Modal -->
             <div id="draft-modal" class="hidden fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4">
                 <div class="clean-card w-full max-w-lg p-6 bg-white shadow-2xl relative">
                     <button onclick="toggleDraftModal()" class="absolute right-4 top-4 text-slate-400 hover:text-slate-800">
@@ -316,7 +334,7 @@
                         </div>
 
                         <div>
-                            <label class="block font-bold text-slate-700 mb-1">Full Article Content (Supports HTML tags)</label>
+                            <label class="block font-bold text-slate-700 mb-1">Full Article Content</label>
                             <textarea id="draft-content" rows="4" required placeholder="Write your full SAP walkthrough content here..." class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-sapphire-600"></textarea>
                         </div>
 
@@ -333,7 +351,7 @@
 
     <!-- Footer -->
     <footer class="bg-white border-t border-slate-200 py-8 mt-16 text-xs text-slate-500">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-2">
                 <div class="w-6 h-6 rounded-lg bg-sapphire-900 text-white flex items-center justify-center font-bold text-[10px]">PP</div>
                 <span class="font-bold text-sapphire-dark">Peace Peter | SAP FICO Blog</span>
