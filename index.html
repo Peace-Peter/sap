@@ -118,19 +118,20 @@
                     <!-- Profile Picture Column -->
                     <div class="md:col-span-5 flex flex-col items-center text-center">
                         <div class="relative group w-52 h-52 sm:w-60 sm:h-60 rounded-3xl overflow-hidden bg-slate-100 border-2 border-sapphire-100 shadow-md flex items-center justify-center mb-4">
-                            <!-- Image Element -->
-                            <img id="profile-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600" alt="Peace Peter" class="w-full h-full object-cover object-center">
+                            <!-- Image Element referencing local GitHub repository pictures -->
+                            <img id="profile-img" src="peacepeter.jpg" onerror="this.src='https://placehold.co/600x600/1e3a8a/ffffff?text=Peace+Peter'" alt="Peace Peter" class="w-full h-full object-cover object-center transition-all duration-500">
                             
-                            <!-- Placeholder Badge -->
+                            <!-- Placeholder Overlay Badge -->
                             <div class="absolute inset-0 bg-sapphire-dark/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white text-xs font-semibold p-4">
                                 <i data-lucide="camera" class="w-6 h-6 mb-2"></i>
-                                <span>Peace Peter's Photo</span>
+                                <span id="photo-label">Peace Peter (Photo 1)</span>
                             </div>
                         </div>
 
                         <!-- Quick Toggle Photo Demo -->
-                        <button onclick="togglePhoto()" class="text-[11px] font-semibold text-sapphire-600 hover:text-sapphire-900 flex items-center gap-1 mt-1">
-                            <i data-lucide="refresh-cw" class="w-3 h-3"></i> Switch Photo View
+                        <button onclick="togglePhoto()" class="text-[11px] font-semibold text-sapphire-600 hover:text-sapphire-900 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-sapphire-50 border border-sapphire-100 transition-colors">
+                            <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-sapphire-600"></i>
+                            <span id="toggle-btn-text">Switch to Alternate Photo</span>
                         </button>
                     </div>
 
@@ -358,16 +359,23 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Photo Toggle function for Peace Peter's profile picture
-        let isDefaultPhoto = true;
+        // Photo Toggle function switching between peacepeter.jpg & peacepeter2.jpg
+        let isPrimaryPhoto = true;
         function togglePhoto() {
             const img = document.getElementById('profile-img');
-            if(isDefaultPhoto) {
-                img.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600";
+            const label = document.getElementById('photo-label');
+            const btnText = document.getElementById('toggle-btn-text');
+
+            if(isPrimaryPhoto) {
+                img.src = "peacepeter2.jpg";
+                if(label) label.textContent = "Peace Peter (Photo 2)";
+                if(btnText) btnText.textContent = "Switch to Main Photo";
             } else {
-                img.src = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600";
+                img.src = "peacepeter.jpg";
+                if(label) label.textContent = "Peace Peter (Photo 1)";
+                if(btnText) btnText.textContent = "Switch to Alternate Photo";
             }
-            isDefaultPhoto = !isDefaultPhoto;
+            isPrimaryPhoto = !isPrimaryPhoto;
         }
 
         // SAP Blog Posts Dataset
