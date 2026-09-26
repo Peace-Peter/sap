@@ -153,7 +153,10 @@
                         <!-- Narrative Bio Paragraphs -->
                         <div class="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
                             <p>
-                                Hi, I'm <strong class="text-slate-900 font-bold">Peace Peter</strong>. I am deeply motivated by precision, structural accuracy, and enterprise efficiency. My work sits at the intersection of business accounting logic and SAP technology—where complex financial requirements are transformed into robust, standardized system configurations.
+                                At the click of a button, things should fall into their rightful place. Efficiency and optimization are at the heart of how I approach my work, and that is what I strive to achieve in every SAP project I work on.
+                            </p>
+                            <p>
+                                I created this space to document what I learn and experience along the way, from configuration guides and troubleshooting errors to practical tips for the amazing business users I get to work with.
                             </p>
                         </div>
 
@@ -179,7 +182,7 @@
                         <div class="pt-6 border-t border-slate-100">
                             <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
                                 <div>
-                                    <div class="text-3xl lg:text-4xl font-extrabold text-sapphire-dark tracking-tight">6</div>
+                                    <div class="text-3xl lg:text-4xl font-extrabold text-sapphire-dark tracking-tight">4</div>
                                     <div class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mt-1">PROJECTS</div>
                                 </div>
                                 <div>
@@ -191,7 +194,7 @@
                                     <div class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mt-1">CERTIFIED</div>
                                 </div>
                                 <div>
-                                    <div class="text-3xl lg:text-4xl font-extrabold text-sapphire-dark tracking-tight">3</div>
+                                    <div class="text-3xl lg:text-4xl font-extrabold text-sapphire-dark tracking-tight">3+</div>
                                     <div class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mt-1">YEARS IN SAP</div>
                                 </div>
                             </div>
@@ -261,8 +264,8 @@
             <div id="blog-feed-header">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
                     <div>
-                        <h1 class="text-3xl font-extrabold text-sapphire-dark mb-1">SAP Articles & Walkthroughs</h1>
-                        <p class="text-xs sm:text-sm text-slate-500">Periodically published articles on SAP FICO configurations, T-Codes, and accounting entries.</p>
+                        <h1 class="text-3xl font-extrabold text-sapphire-dark mb-1">SAP Guides & Insights</h1>
+                        <p class="text-xs sm:text-sm text-slate-500">Configuration, troubleshooting solutions, and tips for SAP users.</p>
                     </div>
                 </div>
 
@@ -338,17 +341,24 @@
             isPrimaryPhoto = !isPrimaryPhoto;
         }
 
+        // Friendly labels shown on each article for its primary tag
+        const TAG_LABELS = {
+            "Errors": "SAP FICO Error Library",
+            "Configuration": "Configuration Guide",
+            "Data Migration": "Data Migration Notes",
+            "Super User": "Tips for Super Users"
+        };
+
         // SAP Blog Posts Dataset
         let blogPosts = [
             {
                 id: 1,
                 title: "Procure-to-Pay (P2P) Accounting & Posting Entries Explained",
                 tags: ["Configuration"],
-                moduleTag: "FI-AP / MM Integration",
                 date: "Oct 18, 2026",
                 summary: "A complete walkthrough of the financial ledger movements created at Purchase Order, Goods Receipt (MIGO), Invoice Verification (MIRO), and Payment Run (F110).",
-                verse: "",
-                verseRef: "",
+                verse: "Whatsoever thy hand findeth to do, do it with thy might.",
+                verseRef: "Ecclesiastes 9:10 (KJV)",
                 content: `
                     <p>The Procure-to-Pay (P2P) process represents the financial integration between SAP Materials Management (MM) and Accounts Payable (FI-AP).</p>
                     
@@ -378,11 +388,10 @@
                 id: 4,
                 title: "Accounting Entries for the Procure-to-Pay Cycle (with Bank Reconciliation)",
                 tags: ["Configuration"],
-                moduleTag: "FI-AP / SAP Public Cloud Apps",
                 date: "Sep 25, 2026",
                 summary: "A breakdown of the accounting entries behind each step of the Procure-to-Pay cycle, plus the SAP Public Cloud apps you'd use at each step.",
-                verse: "",
-                verseRef: "",
+                verse: "Seest thou a man diligent in his business? he shall stand before kings.",
+                verseRef: "Proverbs 22:29 (KJV)",
                 content: `
                     <p>Sharing a breakdown of the accounting entries behind each step of the Procure-to-Pay cycle along with the apps you'd use for each step in SAP Public Cloud.</p>
                     <p>It's a useful reference if you're working in FICO and you need to see where a procurement action on the MM side triggers an accounting entry on the FI side.</p>
@@ -495,11 +504,10 @@
                 id: 2,
                 title: "Asset Accounting: Execution of Depreciation Run (AFAB)",
                 tags: ["Configuration"],
-                moduleTag: "FI-AA Submodule",
                 date: "Sep 30, 2026",
                 summary: "How asset master records, depreciation keys, and transaction AFAB function during month-end closing in SAP.",
-                verse: "",
-                verseRef: "",
+                verse: "Commit thy works unto the LORD, and thy thoughts shall be established.",
+                verseRef: "Proverbs 16:3 (KJV)",
                 content: `
                     <p>Asset Accounting (FI-AA) manages fixed assets from capitalization to retirement. Executing transaction AFAB posts periodic depreciation into General Ledger accounts.</p>
 
@@ -514,11 +522,10 @@
                 id: 3,
                 title: "Essential SAP FICO Transaction Codes Cheat Sheet",
                 tags: ["Configuration", "Super User"],
-                moduleTag: "FI-GL / Core",
                 date: "Sep 12, 2026",
                 summary: "A practical T-Code reference guide for General Ledger postings, Vendor/Customer line item displays, and period closing.",
-                verse: "",
-                verseRef: "",
+                verse: "Let all things be done decently and in order.",
+                verseRef: "1 Corinthians 14:40 (KJV)",
                 content: `
                     <p>Here is my reference list of primary T-Codes every SAP practitioner uses daily:</p>
                     <ul class="list-disc pl-5 space-y-1 text-xs my-3 text-slate-600">
@@ -626,7 +633,7 @@
             document.getElementById('blog-feed-header').classList.add('hidden');
             document.getElementById('article-reader-container').classList.remove('hidden');
 
-            document.getElementById('reader-module').textContent = post.moduleTag;
+            document.getElementById('reader-module').textContent = TAG_LABELS[post.tags[0]] || post.tags[0];
             document.getElementById('reader-date').textContent = post.date;
             document.getElementById('reader-title').textContent = post.title;
             document.getElementById('reader-body').innerHTML = post.content;
