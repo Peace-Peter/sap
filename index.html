@@ -544,20 +544,42 @@
             },
             {
                 id: 2,
-                title: "Asset Accounting: Execution of Depreciation Run (AFAB)",
+                title: "How to Post an Asset Acquisition from a Supplier Invoice",
                 tags: ["Tips for Super Users"],
-                date: "Sep 30, 2026",
-                summary: "How asset master records, depreciation keys, and transaction AFAB function during month-end closing in SAP.",
+                date: "Oct 14, 2026",
+                summary: "Capitalizing a purchased asset in S/4HANA Cloud Public Edition: post the supplier invoice against the asset, then confirm the acquisition value on the asset itself.",
                 verse: "Commit thy works unto the LORD, and thy thoughts shall be established.",
                 verseRef: "Proverbs 16:3 (KJV)",
                 content: `
-                    <p>Asset Accounting (FI-AA) manages fixed assets from capitalization to retirement. Executing transaction AFAB posts periodic depreciation into General Ledger accounts.</p>
+                    <p>When the company buys an asset, the supplier invoice is what puts the cost on it. In SAP S/4HANA Cloud Public Edition you can do this straight from the Create Supplier Invoice app. This is how I post it. The screenshots are from a training system.</p>
+                    <p>One thing to have ready first: the asset master record has to exist already, because you pick it on the invoice.</p>
 
-                    <h3 class="text-base font-bold text-sapphire-dark mt-4 mb-2">Month-End Depreciation Posting (AFAB)</h3>
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 font-mono text-xs my-2">
-                        Debit: Depreciation Expense Account (+)<br>
-                        Credit: Accumulated Depreciation Account (-)
+                    <div class="space-y-6 mt-6">
+                        <div>
+                            <p class="text-xs font-bold text-sapphire-900 uppercase tracking-wide mb-2">Step 1: Fill in the General Information tab</p>
+                            <p class="text-sm text-slate-600 mb-3">Open <strong>Create Supplier Invoice</strong>. Enter the supplier, company code, invoice date, posting date, gross invoice amount and the supplier's invoice reference. I also type "Asset Acquisition" in the header text so the document is easy to find later.</p>
+                            <img src="asset-acq-general-information.png" alt="Create Supplier Invoice, General Information tab with supplier, company code, gross amount and reference filled in" class="w-full rounded-xl border border-slate-200">
+                        </div>
+
+                        <div>
+                            <p class="text-xs font-bold text-sapphire-900 uppercase tracking-wide mb-2">Step 2: Select the asset on the Asset Items tab</p>
+                            <p class="text-sm text-slate-600 mb-3">Go to the <strong>Asset Items</strong> tab and add a line. Keep the indicator on Debit, pick the asset (and subnumber if you use one), enter the amount and check the tax code. Watch the balance at the top of the screen. It shows the full invoice amount in red until the asset line is in, and drops to 0.00 once everything is allocated. That is your sign the invoice is ready.</p>
+                            <img src="asset-acq-asset-items.png" alt="Create Supplier Invoice, Asset Items tab with the asset selected and balance at 0.00" class="w-full rounded-xl border border-slate-200">
+                        </div>
+
+                        <div>
+                            <p class="text-xs font-bold text-sapphire-900 uppercase tracking-wide mb-2">Step 3: Post</p>
+                            <p class="text-sm text-slate-600">Click <strong>Post</strong>. If you want to see the entries before they hit the ledger, use <strong>Simulate</strong> first.</p>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 font-mono text-xs my-3">
+                                Debit: Fixed Asset (Acquisition Cost)<br>
+                                Credit: Supplier (Payables)
+                            </div>
+                        </div>
                     </div>
+
+                    <h3 class="text-base font-bold text-sapphire-dark mt-8 mb-2">Check the result</h3>
+                    <p>Open <strong>Fixed Asset Valuation</strong> for the asset, go to the book depreciation area and look at the <strong>Journal Entries</strong> tab. The posting should be there with asset transaction type 100 (External asset acquisition) and line item type 7040 (Acquisition Costs, Current Year), for the invoice amount. That amount is now the acquisition value on the asset.</p>
+                    <img src="asset-acq-valuation.png" alt="Fixed Asset Valuation showing the external asset acquisition journal entry" class="w-full rounded-xl border border-slate-200 my-4">
                 `
             },
             {
