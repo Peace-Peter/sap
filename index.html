@@ -336,33 +336,30 @@
 
         // SAP Blog Posts Dataset
         let blogPosts = [
-                        {
+                                    {
                 id: 6,
                 title: "Invoice Missing from the Payment Proposal? Check the Payment Terms",
                 tags: ["Tips for Super Users"],
                 date: "Oct 19, 2026",
                 summary: "The payment run finished without errors, but an overdue invoice never showed up in the proposal. The payment terms on the invoice are a good first place to look.",
-                verse: "",
-                verseRef: "",
+                verse: "But God commendeth his love toward us, in that, while we were yet sinners, Christ died for us",
+                verseRef: "Romans 5:8",
                 content: `
-                    <p>If you've been using the Automatic Payment Run in SAP, you already know what needs to be maintained for a smooth run. At the very least, the bank details, payment terms and payment method in the supplier's master data.</p>
-                    <p>But even when all of that is in place and the payment run completes without errors, some invoices you expected to be due can still be missing from the payment proposal.</p>
-                    <p>The AP team starts to worry when, after several payment cycles, an invoice that should be overdue under the contract still isn't being proposed alongside the other invoices for the same supplier.</p>
-                    <p>One of the first things to check is the payment terms on the invoice.</p>
-
-                    <h3 class="text-base font-bold text-sapphire-dark mt-8 mb-2">Where the problem comes from</h3>
-                    <p>When you create a supplier invoice, the payment terms default from the supplier master data. The field is editable though, so someone can change it by mistake. For example, the master data says 7 days and the invoice says 90 days.</p>
-                    <p>When the two differ, SAP uses the terms on the invoice to work out the due date. Because the payment run still finishes without an error, this is easy to miss.</p>
-                    <p>In my example, the supplier master data has payment terms 0004 for company code 1010:</p>
-                    <img src="payment-terms-supplier-master.png" alt="Supplier master data, Company Codes tab, with payment terms 0004 highlighted" class="w-full rounded-xl border border-slate-200 my-4">
-                    <p>But on one invoice for the same supplier, the Payment tab shows NT60 (Net Due in 60 Days), which gives a net due date of 18.12.2026:</p>
-                    <img src="payment-terms-invoice.png" alt="Supplier invoice, Payment tab, with payment terms NT60 highlighted" class="w-full rounded-xl border border-slate-200 my-4">
-
-                    <h3 class="text-base font-bold text-sapphire-dark mt-8 mb-2">How to find these invoices</h3>
-                    <p>A quick way to investigate is the <strong>Manage Supplier Line Items</strong> report. Filter by Open Items to see only uncleared invoices, then add the <strong>Net Due Date</strong> and <strong>Payment Terms</strong> columns to your view.</p>
-                    <p>Compare both against what was agreed with the supplier. In the screenshot, the invoice with NT60 is due on 18.12.2026, while the other open invoices for the same supplier, on 0004, are due on 31.10.2026.</p>
-                    <img src="payment-terms-line-items-report.png" alt="Manage Supplier Line Items showing Payment Terms and Net Due Date columns, with the NT60 invoice highlighted" class="w-full rounded-xl border border-slate-200 my-4">
-                    <p>So when an invoice you expect to be due is missing from the payment proposal, check the payment terms entered on the invoice.</p>
+                    <p>If you've been using the Automatic Payment Run in SAP, you already know what needs to be maintained for a smooth run. At the very least, the bank details, payment terms and payment method in the supplier's master data. Right?</p>
+                    <p>But even when all these are in place and the payment run completes without errors, you may still find that some invoices you expected to be due for payment are missing from the payment proposal.</p>
+                    <p>The AP team may become worried when, after several payment cycles, an invoice that should be overdue based on the contractual agreement is still not being proposed for payment alongside other invoices for the same supplier.</p>
+                    <p>One of the things to check is the payment terms entered on the invoice.</p>
+                    <p>When creating a supplier invoice, the payment terms default to what was maintained in the supplier's master data. However, the field is editable, and someone can mistakenly change it.</p>
+                    <p>For example, the payment terms in the supplier master data may be set to 7 days, but the invoice has 90 days.</p>
+                    <p>Where the payment terms differ between the supplier master data and the invoice, SAP uses the terms entered on the invoice to determine the due date.</p>
+                    <img src="payment-terms-supplier-master.png" alt="Supplier master data, Company Codes tab, with payment terms highlighted" class="w-full rounded-xl border border-slate-200 my-4">
+                    <img src="payment-terms-invoice.png" alt="Supplier invoice, Payment tab, with payment terms highlighted" class="w-full rounded-xl border border-slate-200 my-4">
+                    <p>Something as small as this can easily be overlooked because the payment run completes without throwing an error.</p>
+                    <p>So, when an invoice you expect to be due is missing from the payment proposal, check the payment terms entered on the invoice.</p>
+                    <p>A quick way to investigate this is through the Manage Supplier Line Items report.</p>
+                    <p>Filter by Open Items to see only uncleared invoices, then add the Net Due Date and Payment Terms columns to your report view.</p>
+                    <img src="payment-terms-line-items-report.png" alt="Manage Supplier Line Items showing Payment Terms and Net Due Date columns, with one invoice highlighted" class="w-full rounded-xl border border-slate-200 my-4">
+                    <p>Compare the payment terms and net due date against what was agreed with the supplier. This can help you identify invoices whose payment terms may have been entered incorrectly.</p>
                 `
             },
             {
