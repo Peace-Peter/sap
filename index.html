@@ -349,6 +349,8 @@
                     <p>But even when all these are in place and the payment run completes without errors, you may still find that some invoices you expected to be due for payment are missing from the payment proposal.</p>
                     <p>The AP team may become worried when, after several payment cycles, an invoice that should be overdue based on the contractual agreement is still not being proposed for payment alongside other invoices for the same supplier.</p>
                     <p>One of the things to check is the payment terms entered on the invoice.</p>
+                    
+                    <h3 class="text-base font-bold text-sapphire-dark mt-8 mb-2">Where the problem comes from</h3>
                     <p>When creating a supplier invoice, the payment terms default to what was maintained in the supplier's master data. However, the field is editable, and someone can mistakenly change it.</p>
                     <p>For example, the payment terms in the supplier master data may be set to 7 days, but the invoice has 90 days.</p>
                     <p>Where the payment terms differ between the supplier master data and the invoice, SAP uses the terms entered on the invoice to determine the due date.</p>
@@ -356,8 +358,10 @@
                     <img src="payment-terms-invoice.png" alt="Supplier invoice, Payment tab, with payment terms highlighted" class="w-full rounded-xl border border-slate-200 my-4">
                     <p>Something as small as this can easily be overlooked because the payment run completes without throwing an error.</p>
                     <p>So, when an invoice you expect to be due is missing from the payment proposal, check the payment terms entered on the invoice.</p>
-                    <p>A quick way to investigate this is through the Manage Supplier Line Items report.</p>
-                    <p>Filter by Open Items to see only uncleared invoices, then add the Net Due Date and Payment Terms columns to your report view.</p>
+                    
+                    <h3 class="text-base font-bold text-sapphire-dark mt-8 mb-2">How to find these invoices</h3>
+                    <p>A quick way to investigate this is through the <strong>Manage Supplier Line Items report</strong>.</p>
+                    <p>Filter by <strong>Open Items</strong> to see only uncleared invoices, then add the <strong>Net Due Date</strong> and <strong>Payment Terms</strong> columns to your report view.</p>
                     <img src="payment-terms-line-items-report.png" alt="Manage Supplier Line Items showing Payment Terms and Net Due Date columns, with one invoice highlighted" class="w-full rounded-xl border border-slate-200 my-4">
                     <p>Compare the payment terms and net due date against what was agreed with the supplier. This can help you identify invoices whose payment terms may have been entered incorrectly.</p>
                 `
